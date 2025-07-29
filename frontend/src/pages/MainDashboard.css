@@ -1,0 +1,32 @@
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.header {
+  padding: 12px 24px;
+  font-weight: bold;
+  font-size: 20px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.main-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+  gap: 1px;
+  background: #e2e8f0;
+}
+
+.sidebar, .chart, .insights {
+  background: #fff;
+  padding: 16px;
+}
+
+#tv-attr-logo {
+  display: none !important;
+}
