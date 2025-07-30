@@ -1,18 +1,21 @@
 import './MainDashboard.css';
 import ChartPanel from '../components/ChartPanel';
+import StockListCard from '../components/StockListCard';
+import { MdBarChart } from 'react-icons/md';
 
-const mockCandleData = [
-  { time: "2024-07-01", open: 123, high: 125, low: 122, close: 124 },
-  { time: "2024-07-02", open: 124, high: 127, low: 123, close: 126 },
-  { time: "2024-07-03", open: 126, high: 130, low: 125, close: 128 },
-  { time: "2024-07-04", open: 128, high: 133, low: 127, close: 132 },
-  { time: "2024-07-05", open: 132, high: 135, low: 130, close: 134 },
-  { time: "2024-07-06", open: 134, high: 136, low: 133, close: 135 },
-  { time: "2024-07-07", open: 135, high: 139, low: 134, close: 138 },
-  { time: "2024-07-08", open: 138, high: 141, low: 137, close: 140 },
-  { time: "2024-07-09", open: 140, high: 144, low: 139, close: 143 },
-  { time: "2024-07-10", open: 143, high: 147, low: 142, close: 146 },
+const stockList = [
+  { symbol: "RELIANCE", price: 2862, emotion: "Greed", confidence: 0.84 },
+  { symbol: "TCS", price: 3540, emotion: "Trap", confidence: 0.69 },
+  { symbol: "HDFCBANK", price: 1572, emotion: "Fear", confidence: 0.53 },
+  { symbol: "INFY", price: 1398, emotion: "Exhaustion", confidence: 0.47 },
+  { symbol: "SBIN", price: 622, emotion: "Greed", confidence: 0.77 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ICICIBANK", price: 970, emotion: "Fear", confidence: 0.58 },
+  { symbol: "KOTAKBANK", price: 1744, emotion: "Trap", confidence: 0.66 },
+  { symbol: "HCLTECH", price: 1370, emotion: "Greed", confidence: 0.81 },
+  { symbol: "ULTRACEMCO", price: 9395, emotion: "Exhaustion", confidence: 0.49 },
 ];
+
 
 export default function MainDashboard() {
   return (
@@ -20,13 +23,65 @@ export default function MainDashboard() {
       <header className="header">🚀 Trading Assistant — MOCKUP v13 Layout</header>
       <main className="main-content">
         <aside className="sidebar">
-          <h2>📋 Stock List</h2>
-          <p>CANBK</p>
-          <p>SBIN</p>
-          <p>RELIANCE</p>
+          {/* Sidebar: Stock List */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            borderRight: "1px solid #ddd",
+            backgroundColor: "#fafafa"
+          }}>
+            {/* Header stays fixed */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '14px 16px 10px 16px',
+              backgroundColor: '#fff',
+              borderBottom: '1px solid #e0e0e0',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden'
+            }}>
+              {/* Icon */}
+              <MdBarChart size={18} color="#444" style={{ marginRight: '8px' }} />
+
+              {/* Heading + count */}
+              <div style={{
+                fontSize: '15px',
+                fontWeight: 600,
+                color: '#222',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                Stocks with Setups
+                <span style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#666',
+                  padding: '1px 6px',
+                  borderLeft: '1px solid #ccc'
+                }}>
+                  {stockList.length}
+                </span>
+              </div>
+            </div>
+
+
+            {/* Scrollable stock list */}
+            <div style={{
+              flex: 1,
+              overflowY: "auto",
+              padding: "12px 14px 20px 14px",
+            }}>
+              {stockList.map((stock) => (
+                <StockListCard key={stock.symbol} {...stock} />
+              ))}
+            </div>
+          </div>
+
         </aside>
         <section className="chart">
-          <ChartPanel candleData={mockCandleData} />
+          <ChartPanel />
         </section>
         <aside className="insights">
           <h2>🧠 Emotion + Entry Panel</h2>
