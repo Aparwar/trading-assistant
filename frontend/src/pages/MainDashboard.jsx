@@ -1,6 +1,8 @@
 import './MainDashboard.css';
 import ChartPanel from '../components/ChartPanel';
 import StockListCard from '../components/StockListCard';
+import EmotionInsightPanel from '../components/EmotionInsightPanel';
+import mockEmotionData from '../components/mockEmotionData';
 import { MdBarChart } from 'react-icons/md';
 
 const stockList = [
@@ -20,7 +22,7 @@ const stockList = [
 export default function MainDashboard() {
   return (
     <div className="dashboard">
-      <header className="header">🚀 Trading Assistant — MOCKUP v13 Layout</header>
+      <header className="header">Trading Assistant</header>
       <main className="main-content">
         <aside className="sidebar">
           {/* Sidebar: Stock List */}
@@ -84,8 +86,7 @@ export default function MainDashboard() {
           <ChartPanel />
         </section>
         <aside className="insights">
-          <h2>🧠 Emotion + Entry Panel</h2>
-          <p>Fear, Trap, Greed overlays will appear here.</p>
+          <EmotionInsightPanel data={mockEmotionData} />
         </aside>
       </main>
     </div>

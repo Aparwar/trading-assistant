@@ -1,0 +1,116 @@
+/* === PANEL CONTAINER === */
+.insight-canvas-panel {
+    height: 100%;
+    overflow-y: auto;
+    background: #fff;
+    padding: 1.8rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+}
+
+.insight-canvas-panel.compact {
+    gap: 1rem;
+    /* reduced from 1.6rem */
+}
+
+/* === SECTIONS === */
+.section {
+    background: #fafafa;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: 1rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* === SECTION HEADINGS === */
+.section-heading {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #444;
+    border-left: 4px solid #ccc;
+    padding-left: 0.6rem;
+}
+
+/* === EMOTION HEADER === */
+.emotion-heading {
+    border-left-color: #007bff;
+    font-size: 1.05rem;
+    color: #007bff;
+}
+
+/* === BODY TEXT === */
+.section-body {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* === EMOTION METRICS BLOCK === */
+.emotion-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    margin-top: -0.2rem;
+}
+
+/* === DIRECTION STYLES === */
+.dir.buy {
+    color: #2e8b57;
+    font-weight: 600;
+}
+
+.dir.sell {
+    color: #c0392b;
+    font-weight: 600;
+}
+
+/* === GRID FOR SR === */
+.sr-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.sr-row {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    border: 1px solid #eee;
+}
+
+/* === TWO COLUMNS FOR SMART/RETAIL === */
+.row {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.column {
+    flex: 1;
+}
+
+/* === TAKEAWAY === */
+.takeaway {
+    background: #fff9e6;
+    border-left: 4px solid #f4c542;
+}
+
+.takeaway .section-heading {
+    border-left-color: #f4c542;
+    color: #a05a00;
+}
+
+.takeaway .section-body {
+    color: #7a4b00;
+    font-weight: 500;
+    font-style: italic;
+}

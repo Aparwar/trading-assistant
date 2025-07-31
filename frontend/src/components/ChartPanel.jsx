@@ -16,7 +16,7 @@ const ChartPanel = () => {
 
     // Main Candle Chart
     const mainChart = createChart(chartContainerRef.current, {
-      layout: { background: { color: "#fff" }, textColor: "#000" },
+      layout: { attributionLogo: false, background: { color: "#fff" }, textColor: "#000" },
       rightPriceScale: { scaleMargins: { top: 0.2, bottom: 0.1 } },
       timeScale: {
         rightOffset: 5,
@@ -64,7 +64,7 @@ const ChartPanel = () => {
       handleScroll: false,
       handleScale: false,
       crossHair: { vertLine: { visible: false }, horzLine: { visible: false } },
-      layout: { background: { color: "#ffffff" }, textColor: "#333" },
+      layout: { attributionLogo: false, background: { color: "#ffffff" }, textColor: "#333" },
       grid: { vertLines: { visible: false }, horzLines: { visible: false } },
       rightPriceScale: { visible: true },
       timeScale: { visible: true, borderVisible: false },
@@ -146,7 +146,7 @@ const ChartPanel = () => {
     // RSI Chart
     const rsiChart = createChart(rsiRef.current, {
       // height: 200,
-      layout: { background: { color: "#ffffff" }, textColor: "#333" },
+      layout: { attributionLogo: false, background: { color: "#ffffff" }, textColor: "#333" },
       rightPriceScale: {
         visible: true,
         scaleMargins: { top: 0.2, bottom: 0.2 },
