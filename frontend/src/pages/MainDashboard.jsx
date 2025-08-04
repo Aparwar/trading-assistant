@@ -18,14 +18,12 @@ const stockList = [
   { symbol: "ULTRACEMCO", price: 9395, emotion: "Exhaustion", confidence: 0.49 },
 ];
 
-
 export default function MainDashboard() {
   return (
     <div className="dashboard">
       <header className="header">Trading Assistant</header>
       <main className="main-content">
         <aside className="sidebar">
-          {/* Sidebar: Stock List */}
           <div style={{
             display: "flex",
             flexDirection: "column",
@@ -33,7 +31,6 @@ export default function MainDashboard() {
             borderRight: "1px solid #ddd",
             backgroundColor: "#fafafa"
           }}>
-            {/* Header stays fixed */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -43,10 +40,7 @@ export default function MainDashboard() {
               whiteSpace: 'nowrap',
               overflow: 'hidden'
             }}>
-              {/* Icon */}
               <MdBarChart size={18} color="#444" style={{ marginRight: '8px' }} />
-
-              {/* Heading + count */}
               <div style={{
                 fontSize: '15px',
                 fontWeight: 600,
@@ -67,9 +61,6 @@ export default function MainDashboard() {
                 </span>
               </div>
             </div>
-
-
-            {/* Scrollable stock list */}
             <div style={{
               flex: 1,
               overflowY: "auto",
@@ -80,12 +71,15 @@ export default function MainDashboard() {
               ))}
             </div>
           </div>
-
         </aside>
+
         <section className="chart">
+          {/* The ChartPanel now draws dimmed entry/stop/target lines automatically */}
           <ChartPanel />
         </section>
+
         <aside className="insights">
+          {/* Emotion detail panel */}
           <EmotionInsightPanel data={mockEmotionData} />
         </aside>
       </main>

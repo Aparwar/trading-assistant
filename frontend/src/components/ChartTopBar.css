@@ -1,0 +1,75 @@
+/* ChartTopBar.css — Live Focus Bar */
+
+.live-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.035);
+    font-family: 'Inter', sans-serif;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.live-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.live-symbol {
+    font-size: 21px;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: 0.3px;
+}
+
+.live-divider {
+    font-size: 16px;
+    color: #d1d5db;
+}
+
+.live-timeframe {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4d5461;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    margin-top: 1px;
+}
+
+.live-controls {
+    display: flex;
+    gap: 10px;
+    background: #f1f5f9;
+    padding: 4px 6px;
+    border-radius: 9999px;
+    border: 1px solid #e2e8f0;
+}
+
+.live-btn {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    background: transparent;
+    border: none;
+    color: #374151;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.live-btn:hover {
+    background: #e2e8f0;
+}
+
+.live-btn.active {
+    background: #253346;
+    color: #ffffff;
+    font-weight: 600;
+    border: 1px solid #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
