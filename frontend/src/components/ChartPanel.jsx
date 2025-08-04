@@ -62,7 +62,7 @@ const ChartPanel = ({ selectedStock }) => {
         target: 'rgba(34, 22, 139, 0.5)',    // semi-transparent green
       };
 
-      const addAxisLabel = (price, color, title) => {
+      const addESTLabel = (price, color, title) => {
         if (typeof price !== 'number') return;
         const line = candleSeries.createPriceLine({
           price,
@@ -75,6 +75,9 @@ const ChartPanel = ({ selectedStock }) => {
         overlayRefs.push({ type: 'priceLine', ref: line });
       };
 
+      addESTLabel(scaledEntry, colors.entry, 'Entry');
+      addESTLabel(scaledStop, colors.stop, 'Stop');
+      addESTLabel(scaledTarget, colors.target, 'Target');
     } catch (err) {
       console.error('ChartPanel: failed to add dim overlays', err);
     }
