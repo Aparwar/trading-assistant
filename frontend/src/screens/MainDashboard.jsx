@@ -14,6 +14,12 @@ const stockList = [
   { symbol: "INFY", price: 1398, emotion: "Exhaustion", confidence: 0.47 },
   { symbol: "SBIN", price: 622, emotion: "Greed", confidence: 0.77 },
   { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
+  { symbol: "ITC", price: 446, emotion: "Panic", confidence: 0.61 },
   { symbol: "ICICIBANK", price: 970, emotion: "Fear", confidence: 0.58 },
   { symbol: "KOTAKBANK", price: 1744, emotion: "Trap", confidence: 0.66 },
   { symbol: "HCLTECH", price: 1370, emotion: "Greed", confidence: 0.81 },
@@ -54,7 +60,6 @@ export default function MainDashboard() {
 
   return (
     <div className="dashboard">
-      <header className="header">Trading Assistant</header>
       <main className="main-content">
         <aside className="sidebar">
           <div style={{

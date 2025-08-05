@@ -1,5 +1,8 @@
+html,
 body {
   margin: 0;
-  background: #f8fafc;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
   font-family: 'Inter', sans-serif;
 }

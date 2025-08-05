@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TopDockNav from './components/TopDockNav/TopDockNav';
+import AppBrandHeader from './components/AppBrandHeader';
 import MainDashboard from './screens/MainDashboard';
 import StrategyScreen from './screens/StrategyScreen';
 import ExplorerScreen from './screens/ExplorerScreen';
@@ -12,6 +13,7 @@ export default function App() {
       <div style={{ display: 'flex' }}>
         <TopDockNav />
         <div style={{ flex: 1 }}>
+          <AppBrandHeader />
           <Routes>
             <Route path="/" element={<MainDashboard />} />
             <Route path="/strategy" element={<StrategyScreen />} />

@@ -1,0 +1,29 @@
+/* Header.css */
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eaeaea;
+    background: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.header-text h2 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+    color: #222;
+}
+
+.header-text p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
