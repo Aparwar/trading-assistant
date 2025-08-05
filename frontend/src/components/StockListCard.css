@@ -50,3 +50,8 @@
     background: #e7edf7;
     cursor: pointer;
 }
+
+.no-setup {
+    opacity: 0.65;
+    background-color: #f7f7f7;
+}

@@ -10,17 +10,17 @@ const emotionMeta = {
     Exhaustion: { color: "#546e7a", label: "Exhaustion Phase" },
 };
 
-const StockListCard = ({ stock, isActive, onSelect }) => {
+const StockListCard = ({ stock, isActive, onSelect, noSetup }) => {
     const { symbol, price, emotion, confidence } = stock;
     const meta = emotionMeta[emotion] || {
         color: "#90a4ae",
-        label: emotion,
+        label: noSetup ? "No Setup Found" : emotion,
     };
 
-    const cardClass = `stock-card ${isActive ? 'active-stock' : ''}`;
+    const cardClass = `stock-card ${isActive ? 'active-stock' : ''} ${noSetup ? 'no-setup' : ''}`;
 
     return (
-        <div onClick={() => onSelect(stock)} className={cardClass} style={{ boxShadow: `-4px 0 0 0 ${meta.color}, 0 1px 2px rgba(0,0,0,0.05)` }}>
+        <div onClick={() => onSelect(stock)} className={cardClass} style={{ boxShadow: noSetup ? 'none' : `-4px 0 0 0 ${meta.color}, 0 1px 2px rgba(0,0,0,0.05)` }}>
             {/* Symbol + Price */}
             <div className="stock-card-header">
                 <div className="stock-symbol">{symbol}</div>

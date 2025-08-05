@@ -1,6 +1,7 @@
 import './MainDashboard.css';
 import ChartPanel from '../components/ChartPanel';
-import StockListCard from '../components/StockListCard';
+import StockList from '../components/StockList';
+import SearchBar from '../components/SearchBar';
 import EmotionInsightPanel from '../components/EmotionInsightPanel';
 import mockEmotionData from '../components/mockEmotionData';
 import { MdBarChart } from 'react-icons/md';
@@ -22,6 +23,7 @@ const stockList = [
 export default function MainDashboard() {
   const [selectedStock, setSelectedStock] = useState(null);
   const [viewedEmotion, setViewedEmotion] = useState(null); // When user clicks on overlay
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     setSelectedStock(stockList[0]); // Default to first stock
@@ -59,6 +61,7 @@ export default function MainDashboard() {
             display: "flex",
             flexDirection: "column",
             height: "100%",
+            alignItems: "center",
             borderRight: "1px solid #ddd",
             backgroundColor: "#fafafa"
           }}>
@@ -69,7 +72,8 @@ export default function MainDashboard() {
               backgroundColor: '#fff',
               borderBottom: '1px solid #e0e0e0',
               whiteSpace: 'nowrap',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              position: 'fixed',
             }}>
               <MdBarChart size={18} color="#444" style={{ marginRight: '8px' }} />
               <div style={{
@@ -93,13 +97,15 @@ export default function MainDashboard() {
               </div>
             </div>
             <div style={{
-              flex: 1,
-              overflowY: "auto",
-              padding: "12px 14px 20px 14px",
+              padding: "12px 14px",
             }}>
-              {stockList.map((stock) => (
-                <StockListCard key={stock.symbol} stock={stock} isActive={selectedStock?.symbol === stock.symbol} onSelect={setSelectedStock} />
-              ))}
+              <SearchBar value={searchTerm} onChange={setSearchTerm} />
+              <StockList
+                stocks={stockList}
+                activeSymbol={selectedStock?.symbol}
+                onSelect={setSelectedStock}
+                searchTerm={searchTerm}
+              />
             </div>
           </div>
         </aside>
