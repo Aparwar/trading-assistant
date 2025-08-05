@@ -20,7 +20,7 @@ export default function ChartTopBar({ selectedStock, selectedTimeframe, onTimefr
         <div className="live-topbar">
             <div className="live-left">
                 <span className="live-symbol">
-                    {selectedStock?.symbol || 'TATASTEEL'}
+                    {selectedStock?.symbol || 'NIFTY50'}
                 </span>
                 <span className="live-divider">|</span>
                 <span className="live-timeframe">

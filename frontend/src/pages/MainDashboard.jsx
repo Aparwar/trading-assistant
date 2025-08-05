@@ -4,7 +4,7 @@ import StockListCard from '../components/StockListCard';
 import EmotionInsightPanel from '../components/EmotionInsightPanel';
 import mockEmotionData from '../components/mockEmotionData';
 import { MdBarChart } from 'react-icons/md';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const stockList = [
   { symbol: "RELIANCE", price: 2862, emotion: "Greed", confidence: 0.84 },
@@ -20,8 +20,12 @@ const stockList = [
 ];
 
 export default function MainDashboard() {
-
+  const [selectedStock, setSelectedStock] = useState(null);
   const [viewedEmotion, setViewedEmotion] = useState(null); // When user clicks on overlay
+
+  useEffect(() => {
+    setSelectedStock(stockList[0]); // Default to first stock
+  }, []);
 
   const onEmotionSelect = (emotion) => {
     setViewedEmotion(normalizeOverlayEmotion(emotion));
@@ -94,7 +98,7 @@ export default function MainDashboard() {
               padding: "12px 14px 20px 14px",
             }}>
               {stockList.map((stock) => (
-                <StockListCard key={stock.symbol} {...stock} />
+                <StockListCard key={stock.symbol} stock={stock} isActive={selectedStock?.symbol === stock.symbol} onSelect={setSelectedStock} />
               ))}
             </div>
           </div>
@@ -102,7 +106,7 @@ export default function MainDashboard() {
 
         <section className="chart">
           {/* The ChartPanel now draws dimmed entry/stop/target lines automatically */}
-          <ChartPanel viewedEmotion={viewedEmotion} onEmotionSelect={onEmotionSelect} />
+          <ChartPanel selectedStock={selectedStock} viewedEmotion={viewedEmotion} onEmotionSelect={onEmotionSelect} />
         </section>
 
         <aside className="insights">
