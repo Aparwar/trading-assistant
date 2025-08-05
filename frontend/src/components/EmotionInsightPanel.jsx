@@ -1,7 +1,7 @@
 import React from "react";
 import "./EmotionInsightPanel.css";
 
-const EmotionInsightPanel = ({ data }) => {
+const EmotionInsightPanel = ({ data, selectedEmotion, onBack }) => {
     if (!data) return null;
 
     const {
@@ -13,21 +13,27 @@ const EmotionInsightPanel = ({ data }) => {
         exit,
         confidence,
         takeaway,
-        tla,
-        levels,
+        tla = {},
+        levels = {}
     } = data;
 
     return (
         <div className="insight-canvas-panel compact">
+            {selectedEmotion && (
+                <button className="back-button" onClick={onBack}>
+                    🔙 Back to Active Setup
+                </button>
+            )}
+
             {/* ===== EMOTION SNAPSHOT ===== */}
             <div className="section">
                 <div className="section-heading emotion-heading">
-                    🧠 {emotion.toUpperCase()}
+                    🧠 {emotion?.toUpperCase?.() || "Unknown"}
                 </div>
                 <div className="emotion-metrics">
-                    <div><strong>Entry:</strong> ₹{entry.price} <span className={`dir ${entry.direction.toLowerCase()}`}>{entry.direction.toUpperCase()}</span></div>
-                    <div><strong>Stoploss:</strong> ₹{exit.stopLoss}</div>
-                    <div><strong>Target:</strong> ₹{exit.target}</div>
+                    <div><strong>Entry:</strong> ₹{entry?.price} <span className={`dir ${entry?.direction?.toLowerCase?.()}`}>{entry?.direction?.toUpperCase?.()}</span></div>
+                    <div><strong>Stoploss:</strong> ₹{exit?.stopLoss}</div>
+                    <div><strong>Target:</strong> ₹{exit?.target}</div>
                     <div><strong>Confidence:</strong> {confidence}%</div>
                 </div>
             </div>

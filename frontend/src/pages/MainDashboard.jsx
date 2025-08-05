@@ -4,6 +4,7 @@ import StockListCard from '../components/StockListCard';
 import EmotionInsightPanel from '../components/EmotionInsightPanel';
 import mockEmotionData from '../components/mockEmotionData';
 import { MdBarChart } from 'react-icons/md';
+import React, { useState } from 'react';
 
 const stockList = [
   { symbol: "RELIANCE", price: 2862, emotion: "Greed", confidence: 0.84 },
@@ -19,6 +20,32 @@ const stockList = [
 ];
 
 export default function MainDashboard() {
+
+  const [viewedEmotion, setViewedEmotion] = useState(null); // When user clicks on overlay
+
+  const onEmotionSelect = (emotion) => {
+    setViewedEmotion(normalizeOverlayEmotion(emotion));
+  };
+  const normalizeOverlayEmotion = (e) => ({
+    emotion: e.label,
+    reason: e.reason || "No explanation provided",
+    smart_money: e.smart_money || "—",
+    retailers: e.retailers || "—",
+    confidence: e.confidence || 70,
+    entry: { price: e.price, direction: "N/A" },
+    exit: { stopLoss: e.price - 100, target: e.price + 300 },
+    tla: {
+      trend: "N/A",
+      currentPrice: e.price,
+      swingHigh: e.price + 50,
+      swingLow: e.price - 50,
+      action: "N/A"
+    },
+    levels: {}
+  });
+
+  const activeEmotionData = viewedEmotion || mockEmotionData;
+
   return (
     <div className="dashboard">
       <header className="header">Trading Assistant</header>
@@ -75,12 +102,19 @@ export default function MainDashboard() {
 
         <section className="chart">
           {/* The ChartPanel now draws dimmed entry/stop/target lines automatically */}
-          <ChartPanel />
+          <ChartPanel viewedEmotion={viewedEmotion} onEmotionSelect={onEmotionSelect} />
         </section>
 
         <aside className="insights">
           {/* Emotion detail panel */}
-          <EmotionInsightPanel data={mockEmotionData} />
+          <EmotionInsightPanel
+            data={activeEmotionData}
+            selectedEmotion={viewedEmotion}
+            onBack={() => {
+              setViewedEmotion(null);
+            }}
+          />
+
         </aside>
       </main>
     </div>

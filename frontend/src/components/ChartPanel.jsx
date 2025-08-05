@@ -3,21 +3,22 @@ import { createChart } from "lightweight-charts";
 import { candleData, rsiData } from "./ChartData.js";
 import mockEmotionData from "./mockEmotionData";
 import ChartTopBar from "./ChartTopBar.jsx";
+import { emotionOverlayArray } from "./mockEmotionOverlayArray.js";
 
-const ChartPanel = ({ selectedStock }) => {
+const ChartPanel = ({ selectedStock, viewedEmotion, onEmotionSelect }) => {
   const chartContainerRef = useRef();
   const volumeRef = useRef();
   const rsiRef = useRef();
   const ohlcRef = useRef(null);
   const volumeInfoRef = useRef(null);
-  const [selectedTimeframe, setSelectedTimeframe] = useState('15m');
+  const [selectedTimeframe, setSelectedTimeframe] = useState('1D');
+  const [selectedMarkerTime, setSelectedMarkerTime] = useState(null); // 🟢 time of clicked marker
+  const [currentRange, setCurrentRange] = useState(null);
 
   const handleTimeframeChange = (tf) => {
     setSelectedTimeframe(tf);
     // TODO: Trigger chart data refetch based on selected timeframe
   };
-
-
 
   useEffect(() => {
     if (!chartContainerRef.current || !volumeRef.current || !rsiRef.current || !ohlcRef.current) return;
@@ -82,6 +83,40 @@ const ChartPanel = ({ selectedStock }) => {
       console.error('ChartPanel: failed to add dim overlays', err);
     }
 
+    candleSeries.setMarkers(
+      emotionOverlayArray.map((e) => ({
+        time: e.time, // Must match candleData time
+        position: "aboveBar",
+        color: selectedMarkerTime === e.time ? "#000" : e.color,
+        shape: selectedMarkerTime === e.time ? "arrowDown" : "circle",
+        text: e.label
+      }))
+    );
+
+
+    const unsubscribeMainClick = mainChart.subscribeClick((param) => {
+      if (!param?.time) return;
+
+      const emotion = emotionOverlayArray.find((e) => {
+        return e.time === param.time;
+      });
+
+      if (emotion) {
+        onEmotionSelect(emotion);
+        setSelectedMarkerTime(param.time); // 💡 highlight this one
+        setCurrentRange(mainChart.timeScale().getVisibleLogicalRange());
+      }
+    });
+
+    if (currentRange) {
+      mainChart.timeScale().setVisibleLogicalRange(currentRange);
+    }
+
+    if (!viewedEmotion) {
+      setCurrentRange(null);
+      setSelectedMarkerTime(null);
+      mainChart.timeScale().resetTimeScale();
+    }
     // Hover box to display OHLC values
     const unsubscribeCrosshairMove = mainChart.subscribeCrosshairMove((param) => {
       if (!param || !param.seriesData || !ohlcRef.current) {
@@ -196,6 +231,7 @@ const ChartPanel = ({ selectedStock }) => {
       unsubscribeRSISync?.();
       unsubscribeCrosshairMove?.();
       unsubscribeVolumeCrosshair?.();
+      unsubscribeMainClick?.();
       // Clean up custom overlays
       overlayRefs.forEach(({ type, ref }) => {
         try {
@@ -207,7 +243,7 @@ const ChartPanel = ({ selectedStock }) => {
       volumeChart.remove();
       rsiChart.remove();
     };
-  }, []);
+  }, [selectedMarkerTime, viewedEmotion]);
 
   return (
     <div style={{ width: "100%" }}>
